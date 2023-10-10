@@ -46,7 +46,7 @@ def login_request(request):
             login(request, user)
             return render(request, 'djangoapp/index.html')
         else: 
-            # If not, return to login page again
+            # If not, return to registration page again
             return render(request, 'djangoapp/registration.html', context)
     else:
         return render(request, 'djangoapp/registration.html', context)        
