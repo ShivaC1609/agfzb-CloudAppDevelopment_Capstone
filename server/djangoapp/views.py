@@ -37,14 +37,14 @@ def login_request(request):
     context = {}
     # Handles POST request
     if request.method == 'POST':
-        username = request.post['username']
-        password = request.post['password']
+        username = request.POST['username']
+        password = request.POST['password']
         # Try to check if provide credential can be authenticated
         user = authenticate(username=username, password=password)
         if user is not None:
             # If user is valid, call login method to login current user
             login(request, user)
-            return redirect('djangoapp:index.html')
+            return render(request, 'djangoapp/index.html')
         else: 
             # If not, return to login page again
             return render(request, 'djangoapp/registration.html', context)
