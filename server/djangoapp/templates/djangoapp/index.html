@@ -23,29 +23,28 @@
                 <a href="#" class='navbar-brand'>Menu</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="btn btn-link" href="{% url 'djangoapp:about' %}">About us</a>
-                    <a class="btn btn-link" href="{% url 'djangoapp:contact' %}">Contact us</a>
-                    <a class="btn btn-link" href="#">Option 2</a>
-                </li>
                 {% if user.is_authenticated %}
                 <li>
                     <a class="btn btn-link" href="#">Hello {{ user.username }}</a>
-                    <a class="btn btn-link" href="{% url 'onlinecourse:logout' %}">Logout</a>
+                    <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
                 </li>
                 {% else %}
                 <li>
-                    <form class="form-inline" action="{% url 'onlinecourse:login' %}" method="post">
+                    <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                         {% csrf_token %}
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Username" name="username" >
                             <input type="password" class="form-control" placeholder="Password" name="password" >
                             <button class="btn btn-primary" type="submit">Login</button>
-                            <a class="btn btn-link" href="{% url 'onlinecourse:registration' %}">Sign Up</a>
+                            <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                         </div>
                     </form>
                 </li>
                 {% endif %}
+                <li>
+                    <a class="btn btn-link" href="{% url 'djangoapp:about' %}">About us</a>
+                    <a class="btn btn-link" href="{% url 'djangoapp:contact' %}">Contact us</a>
+                </li>
             </ul>
         </div>
     </nav>
