@@ -26,6 +26,7 @@ async function main(params) {
         }
       } else {
         const result = await findAllDealerships(cloudant);
+        const code = result.length ? 200 : 404;
         return {
           statusCode: code,
           headers: { 'Content-Type': 'application/json' },
