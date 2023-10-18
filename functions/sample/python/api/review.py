@@ -8,11 +8,19 @@ def main(dict):
     service.set_service_url("https://16a3789a-76a2-4ffd-8d0b-d85ca4333270-bluemix.cloudantnosqldb.appdomain.cloud")
     response = service.post_find(
                 db='reviews',
-                selector={'dealership': {'$eq': int(dict['id'])}},
+                selector={'dealership': {'$eq': int(dict['dealerId'])}},
             ).get_result()
     try: 
         # Extract only the 'docs' part of the response
         docs = response.get('docs', [])
+        
+        if not docs:
+            return {
+                'statusCode': 404,
+                'body': {
+                    'message': 'dealerId does not exist'
+                }
+            }
 
         result= {
             'headers': {'Content-Type':'application/json'}, 
@@ -21,6 +29,6 @@ def main(dict):
         return result
     except:  
         return { 
-            'statusCode': 404, 
-            'message': 'Something went wrong'
+            'statusCode': 500, 
+            'message': 'Something went wrong on the server'
             }
