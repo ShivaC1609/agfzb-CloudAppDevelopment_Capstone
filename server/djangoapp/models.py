@@ -16,7 +16,7 @@ class CarMake(models.Model):
 
     # Create a toString method for object string representation
     def __str__(self):
-        return self.name + " produced by " + self.producer + ". Description: " + self.description
+        return "Name: " + self.name
 
 # <HINT> Create a Car Model model `class CarModel(models.Model):`:
 # - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
